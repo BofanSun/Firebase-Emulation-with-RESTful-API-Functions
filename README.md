@@ -1,8 +1,9 @@
 # Firebase-Emulation-with-RESTful-API-Functions
 
-Description: This project aims to emulate a database resembling the Google Firebase with complete RESTful API functions, including get (request data from database and print it out), put (write a given value), post (upload new values), patch (update existing values), and delete (remove existing values). For the data set, we chose the World Bird Master List version 13.1 published by the International Ornithological Committee (IOC) to generate a database recording the Latin names of all Orders and Families of birds, as well as their English common name and number of Genus under each Family. 
+## Description
+This project aims to emulate a database resembling the Google Firebase with complete RESTful API functions, including get (request data from database and print it out), put (write a given value), post (upload new values), patch (update existing values), and delete (remove existing values). For the data set, we chose the World Bird Master List version 13.1 published by the International Ornithological Committee (IOC) to generate a database recording the Latin names of all Orders and Families of birds, as well as their English common name and number of Genus under each Family. 
 
-Requirements: 
+## Requirements
 1. flask
 2. flask_socketio 
 3. pymongo
@@ -14,7 +15,7 @@ Requirements:
 To install the above packages, use the following command: pip install -r requirements.txt
 'requirements.txt' file has a list of all the necessary packages required to run this code. 
 
-Data Sources: 
+## Data Sources
 1. IOC World Bird List v13.1
 (URL: https://www.worldbirdnames.org/new/ioc-lists/master-list-2/)
 Explanation: world bird master list by IOC recording more than 11,000 bird species around the world. Here we used the XML file from the website.
