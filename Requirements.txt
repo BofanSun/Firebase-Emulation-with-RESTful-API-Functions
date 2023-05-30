@@ -1,0 +1,8 @@
+flask==1.1.2
+flask_socketio==5.3.3
+pymongo==4.3.3
+asyncio
+websockets==11.0.2
+logging
+json
+
