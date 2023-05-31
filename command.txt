@@ -1,0 +1,34 @@
+GET
+curl -X GET 'http://localhost:5000/project?orderBy=code'
+
+curl -X GET 'http://localhost:5000/project?orderBy=order_name&limitToFirst=2'
+
+curl -X GET 'http://localhost:5000/project?orderBy=order_name&startAt=CASUARIIFORMES&endAt=NYCTIBIIFORMES'
+
+curl -X GET 'http://localhost:5000/project?orderBy=order_name&startAt=CASUARIIFORMES&endAt=NYCTIBIIFORMES&limitToLast=2'
+
+curl -X GET 'http://localhost:5000/project?orderBy=order_name&equalTo=CASUARIIFORMES'
+
+
+PUT
+curl -X PUT -H "Content-Type: application/json" -d '{"code": "PHY"}' http://localhost:5000/project/PSITTACIFORMES
+
+curl -X PUT -H "Content-Type: application/json" -d '{"code": "AEG", "note": "Aegotheliformes are a monotypic bird order traditionally placed as the family Aegothelidae in the order Caprimulgiformes."}' http://localhost:5000/project/AEGOTHELIFORMES
+
+POST
+curl -X POST -H "Content-Type: application/json" -d '{"order_name": "NEOGNATHAE", "note":"The neognaths are the sister group to the paleognaths."}' http://localhost:5000/project
+
+PATCH
+curl -X PATCH -H "Content-Type: application/json" -d '{"code": "PHY, SEQ"}' http://localhost:5000/project/PSITTACIFORMES
+
+DELETE
+curl -X DELETE http://localhost:5000/project/PSITTACIFORMES
+
+ERROR CASE
+curl -X GET 'http://localhost:5000/project?orderBy=order_name&limitToFirst=2&limitToLast=2'
+
+curl -X GET 'http://localhost:5000/project?orderBy=order_name&limitToFirst=-2'
+
+curl -X GET 'http://localhost:5000/project?orderBy=order_name&limitToFirst=0'
+
+curl -X GET 'http://localhost:5000/project?startAt=CASUARIIFORMES'
