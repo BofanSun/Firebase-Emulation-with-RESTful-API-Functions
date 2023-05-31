@@ -26,8 +26,14 @@ Explanation: world bird master list by IOC recording more than 11,000 bird speci
 python3 main.py master_ioc-names_xml.xml 
 ```
 
-'server.py': To run the code, type in the command python3 server.py in the path of the file. After running the script, the user could then input the curl command in the local terminal to commence the query in local MongoDB. See 'command.txt' file for examples. The result and error message will be printed in local terminal. 
+'server.py': To run the code, type in the following command in the path of the file. After running the script, the user could then input the curl command in the local terminal to commence the query in local MongoDB. See 'command.txt' file for examples. The result and error message will be printed in local terminal. 
+```python
+python3 server.py
+```
 
-'websocket-server.py': To run the code, type in the command python3 websocket-server.py in the path of the file. After running the script, the user could then use the webapp.html file to commence querying the local MongoDB database via the html GUI. The result and error message will be printed in both local terminal and html GUI. 
+'websocket-server.py': To run the code, type in the following command in the path of the file. After running the script, the user could then use the webapp.html file to commence querying the local MongoDB database via the html GUI. The result and error message will be printed in both local terminal and html GUI. 
+```python
+python3 websocket-server.py
+```
 
 'webapp.html': To run the Webapp GUI, open this file in any browser. Make sure to put the 'red_bird.png' and 'red_bird2.png' in the same path with this file. 
