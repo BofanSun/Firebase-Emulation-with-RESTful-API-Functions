@@ -5,6 +5,8 @@ This project aims to first emulate a Flask server resembling the Google Firebase
 
 For the dataset, the World Bird Master List version 13.1 published by the International Ornithological Committee (IOC) was chosen to generate a database recording the Latin names of all Orders and Families of birds, as well as their English common name and number of Genus under each Family. 
 
+![WechatIMG742](https://github.com/BofanSun/Firebase-Emulation-with-RESTful-API-Functions/assets/93634338/856094e9-c7fd-4b47-a471-11370924aaf6)
+
 ## Requirements
 1. flask
 2. flask_socketio 
