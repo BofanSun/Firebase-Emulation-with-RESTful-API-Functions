@@ -1,7 +1,9 @@
 # Firebase-Emulation-with-RESTful-API-Functions
 
 ## Description
-This project aims to emulate a database resembling the Google Firebase with complete RESTful API functions, including get (request data from database and print it out), put (write a given value), post (upload new values), patch (update existing values), and delete (remove existing values). For the data set, we chose the World Bird Master List version 13.1 published by the International Ornithological Committee (IOC) to generate a database recording the Latin names of all Orders and Families of birds, as well as their English common name and number of Genus under each Family. 
+This project aims to first emulate a Flask server resembling the Google Firebase with complete RESTful API functions that support curl command-line interactions, including GET (request data from database and print it out), PUT (write a given value), post (upload new values), PATCH (update existing values), and DELETE (remove existing values). And second goal of this project is to develop a Web app which CRUD functions were embedded and demonstrates real-time update and syncing of the dataset with the server via WebSocket.
+
+For the dataset, the World Bird Master List version 13.1 published by the International Ornithological Committee (IOC) was chosen to generate a database recording the Latin names of all Orders and Families of birds, as well as their English common name and number of Genus under each Family. 
 
 ## Requirements
 1. flask
