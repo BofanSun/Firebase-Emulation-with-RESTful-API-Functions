@@ -1,0 +1,56 @@
+*{
+    box-sizing: border-box;
+}
+
+body {
+    justify-cntent: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+button {
+    font-size: 20px;
+    color: black;
+}
+
+#header{
+    background-color: #939650;
+    padding: 10px;
+    font-size: 25px;
+    #text-align: center;
+    font-family: 'Cinzel', serif; 
+    color: white;
+}
+
+#section {
+    display: -webkit-flex;
+    display: flex;
+}
+
+#nav {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    background: #f1f1f1;
+    padding:15px;
+}
+
+#article {
+    -webkit-flex:3;
+    -ms-flex: 3;
+    flex:3;
+    background-color: #BDC0BA;
+    font-weight: bold;
+    font-size: 15px;
+    padding:35px;
+}
+
+.big-input{
+    font-size: 20px;
+    eight: 30px;
+}
+
+.dark-label{
+    color: white;
+    font-family: 'Trebuchet MS';
+}
