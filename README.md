@@ -22,9 +22,9 @@ Explanation: world bird master list by IOC recording more than 11,000 bird speci
 
 ## Running the Code
 'main.py': it uses 'xml_to_json.py' and 'json_to_mongoDB.py', the output will be two JSON file and one will be used to upload into MongoDB. Our 'main.py' can be run by typing command python3 main.py [file name] in the path of the file. Run this first before running anything else! For example: 
-'''
+```python
 python3 main.py master_ioc-names_xml.xml 
-'''
+```
 
 'server.py': To run the code, type in the command python3 server.py in the path of the file. After running the script, the user could then input the curl command in the local terminal to commence the query in local MongoDB. See 'command.txt' file for examples. The result and error message will be printed in local terminal. 
 
