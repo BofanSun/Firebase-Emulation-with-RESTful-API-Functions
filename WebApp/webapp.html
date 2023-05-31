@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>WebSocket demo</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@800&display=swap" rel="stylesheet">   
+    </head>
+    <body>
+        <div id="header">
+            <center><h1>🦜 BIRD INFO SEARCHER 🦜</h1></center>
+        </div>
+        <div id="section">
+        <div id="nav">
+        <center><img id = "birb" src="red_bird2.png" alt="MyImage" height="300" width="300"></center>
+        <center style="background: #E74C3C; margin-left: auto; margin-right: auto; width: 800px; padding-bottom: 10px; padding-top: 10px">
+            <center style="margin-bottom: 10px;">
+                <label for="html2" class='dark-label'>Order Name (mandatory)</label>
+                <input type="text" placeholder="" id="txt_box_ind" class="big-input">
+            </center>
+            <center  style="margin-bottom: 10px;">
+                <label for="html2" class='dark-label'>Code (optional)</label>
+                <input type="text" placeholder="" id="txt_box_code" class="big-input">
+            </center>
+            <center class='dark-label'>
+                <label for="html2">Note (optional)</label>
+                <input type="text" placeholder="" id="txt_box_note" class="big-input">
+            </center>
+        </center>
+
+        <center style="background-color: gray; margin-left: auto; margin-right: auto; width: 800px; padding-bottom: 10px; padding-top: 10px;">
+            <center style="margin-bottom: 10px;">
+                <label for="html2" class='dark-label'>orderBy (mandatory)</label>
+                <input type="text" placeholder="" id="txt_box_orderBy">
+                <label for="html2" class='dark-label'>equalTo (optional)</label>
+                <input type="text" placeholder="" id="txt_box_equalTo">
+            </center>
+            <center style="margin-bottom: 10px;">
+                <label for="html2" class='dark-label'>startAt (optional)</label>
+                <input type="text" placeholder="" id="txt_box_startAt">
+                <label for="html2" class='dark-label'>endAt (optional)</label>
+                <input type="text" placeholder="" id="txt_box_endAt">
+            </center>
+            <center style="margin-bottom: 10px;">
+                <label for="html2" class='dark-label'>limitToFirst (optional)</label>
+                <input type="text" placeholder="" id="txt_box_limitToFirst">
+                <label for="html2" class='dark-label'>limitToLast (optional)</label>
+                <input type="text" placeholder="" id="txt_box_limitToLast">
+            </center>
+            <center style="margin-bottom: 5px;">
+                <button id="request_but">Get</button>
+            </center>
+        </center>
+
+        <center style="background-color: #F39C12; margin; margin-left: auto; margin-right: auto; width: 800px; padding-bottom: 10px; padding-top: 10px; ">
+        <button id="delete_but">Delete Bird</button>
+        <button id="update_but">Update Bird</button>
+        <button id="insert_but">Create New Bird</button>
+        <button id="put_but">Replace Bird Info</button>
+        </center>
+        </div>
+
+        <div id="article">
+            <center><h3 style="margin-top: -10px;">Message and your bird info will be displayed here! </h3></center>
+            <center><table for="html" id='message' style="background-color: rgb(202, 216, 215); border-spacing: 5px;">
+            </table><br></center>
+        </div>
+        <script>
+
+            var req = document.getElementById('request_but'), 
+                del = document.getElementById('delete_but'), 
+                upd = document.getElementById('update_but'), 
+                ins = document.getElementById('insert_but'), 
+                put = document.getElementById('put_but'), 
+                qur = document.getElementById('txt_box_query')
+                txt_box_ind = document.getElementById('txt_box_ind'), 
+                txt_box_code = document.getElementById('txt_box_code'), 
+                txt_box_note = document.getElementById('txt_box_note'), 
+                txt_box_orderBy = document.getElementById('txt_box_orderBy'), 
+                txt_box_equalTo = document.getElementById('txt_box_equalTo'), 
+                txt_box_startAt = document.getElementById('txt_box_startAt'), 
+                txt_box_endAt = document.getElementById('txt_box_endAt'), 
+                txt_box_limitToFirst = document.getElementById('txt_box_limitToFirst'), 
+                txt_box_limitToLast = document.getElementById('txt_box_limitToLast');
+
+            var ws = new WebSocket("ws://127.0.0.1:5000/project");
+
+            // try listen here???
+            // var socket = io("http://127.0.0.1:5000/project"); 
+            // socket.on("server_event", function(data) {
+            // console.log("Received event from server:", data);});
+
+            var value = document.getElementById('message');
+
+            function change_birb(){
+                // everytime this function called, the bird will stare at u in a different way! 
+                var img = document.getElementById("birb")
+
+                if (img.getAttribute("src") == "red_bird.png"){
+                    img.setAttribute("src", "red_bird2.png"); 
+                } else {
+                    img.setAttribute("src", "red_bird.png"); 
+                }}
+
+            // function request
+            req.onclick = function (event){
+                change_birb(); 
+                // var img = document.getElementById("birb")
+
+                // if (img.getAttribute("src") == "red_bird.png"){
+                //     img.setAttribute("src", "red_bird2.png"); 
+                // } else {
+                //     img.setAttribute("src", "red_bird.png")
+                // }
+                var t1 = txt_box_ind.value;
+                var t2 = txt_box_code.value; 
+                var t3 = txt_box_note.value; 
+                var tq1 = txt_box_orderBy.value; 
+                var tq2 = txt_box_equalTo.value; 
+                var tq3 = txt_box_startAt.value; 
+                var tq4 = txt_box_endAt.value; 
+                var tq5 = txt_box_limitToFirst.value; 
+                var tq6 = txt_box_limitToLast.value; 
+
+                var ttt = '{"order_name": ' + '"' + t1 + '"' + ', "code": ' + '"' +t2  + '"' +', "note": ' + '"' + t3 + '"' + '}'; 
+
+                ws.send(JSON.stringify({action: 'request', 
+                    order_name: t1, 
+                    code: t2, 
+                    note: t3, 
+                    in: ttt, 
+                    orderBy: tq1, 
+                    equalTo: tq2, 
+                    startAt: tq3, 
+                    endAt: tq4, 
+                    limitToFirst: tq5, 
+                    limitToLast: tq6})); 
+            }
+
+            // function insert
+            ins.onclick = function (event){
+                var img = document.getElementById("birb")
+
+                if (img.getAttribute("src") == "red_bird.png"){
+                    img.setAttribute("src", "red_bird2.png"); 
+                } else {
+                    img.setAttribute("src", "red_bird.png")
+                }
+
+                var t1 = txt_box_ind.value;
+                var t2 = txt_box_code.value; 
+                var t3 = txt_box_note.value; 
+                var tq1 = txt_box_orderBy.value; 
+                var tq2 = txt_box_equalTo.value; 
+                var tq3 = txt_box_startAt.value; 
+                var tq4 = txt_box_endAt.value; 
+                var tq5 = txt_box_limitToFirst.value; 
+                var tq6 = txt_box_limitToLast.value; 
+                var ttt = '{"order_name": ' + '"' + t1 + '"' + ', "code": ' + '"' +t2  + '"' +', "note": ' + '"' + t3 + '"' + '}'; 
+
+                ws.send(JSON.stringify({action: 'insert', 
+                    order_name: t1, 
+                    code: t2, 
+                    note: t3, 
+                    in: ttt, 
+                    orderBy: tq1, 
+                    equalTo: tq2, 
+                    startAt: tq3, 
+                    endAt: tq4, 
+                    limitToFirst: tq5, 
+                    limitToLast: tq6})); 
+            }
+
+            // function update
+            upd.onclick = function (event){
+                var img = document.getElementById("birb")
+
+                if (img.getAttribute("src") == "red_bird.png"){
+                    img.setAttribute("src", "red_bird2.png"); 
+                } else {
+                    img.setAttribute("src", "red_bird.png")
+                }
+
+                var t1 = txt_box_ind.value;
+                var t2 = txt_box_code.value; 
+                var t3 = txt_box_note.value; 
+                var tq1 = txt_box_orderBy.value; 
+                var tq2 = txt_box_equalTo.value; 
+                var tq3 = txt_box_startAt.value; 
+                var tq4 = txt_box_endAt.value; 
+                var tq5 = txt_box_limitToFirst.value; 
+                var tq6 = txt_box_limitToLast.value; 
+                var ttt = '{"order_name": ' + '"' + t1 + '"' + ', "code": ' + '"' +t2  + '"' +', "note": ' + '"' + t3 + '"' + '}'; 
+
+                ws.send(JSON.stringify({action: 'update', 
+                    order_name: t1, 
+                    code: t2, 
+                    note: t3, 
+                    in: ttt, 
+                    orderBy: tq1, 
+                    equalTo: tq2, 
+                    startAt: tq3, 
+                    endAt: tq4, 
+                    limitToFirst: tq5, 
+                    limitToLast: tq6})); 
+            }
+
+            
+            ws.onmessage = function (message) {
+                value.innerText = message.data;
+                //console.log(server_message); 
+            };
+
+            // function delete
+            del.onclick = function (event){
+                var img = document.getElementById("birb")
+
+                if (img.getAttribute("src") == "red_bird.png"){
+                    img.setAttribute("src", "red_bird2.png"); 
+                } else {
+                    img.setAttribute("src", "red_bird.png")
+                }
+
+                var t1 = txt_box_ind.value;
+                var t2 = txt_box_code.value; 
+                var t3 = txt_box_note.value; 
+                var tq1 = txt_box_orderBy.value; 
+                var tq2 = txt_box_equalTo.value; 
+                var tq3 = txt_box_startAt.value; 
+                var tq4 = txt_box_endAt.value; 
+                var tq5 = txt_box_limitToFirst.value; 
+                var tq6 = txt_box_limitToLast.value; 
+                var ttt = '{"order_name": ' + '"' + t1 + '"' + ', "code": ' + '"' +t2  + '"' +', "note": ' + '"' + t3 + '"' + '}'; 
+                ws.send(JSON.stringify({action: 'delete', 
+                    order_name: t1, 
+                    code: t2, 
+                    note: t3, 
+                    in: ttt, 
+                    orderBy: tq1, 
+                    equalTo: tq2, 
+                    startAt: tq3, 
+                    endAt: tq4, 
+                    limitToFirst: tq5, 
+                    limitToLast: tq6})); 
+            }
+            
+            ws.onmessage = function (message) {
+                value.innerText = message.data;
+                //console.log(server_message); 
+            };
+
+            // function put
+            put.onclick = function (event){
+                var img = document.getElementById("birb")
+
+                if (img.getAttribute("src") == "red_bird.png"){
+                    img.setAttribute("src", "red_bird2.png"); 
+                } else {
+                    img.setAttribute("src", "red_bird.png")
+                }
+
+                var t1 = txt_box_ind.value;
+                var t2 = txt_box_code.value; 
+                var t3 = txt_box_note.value; 
+                var tq1 = txt_box_orderBy.value; 
+                var tq2 = txt_box_equalTo.value; 
+                var tq3 = txt_box_startAt.value; 
+                var tq4 = txt_box_endAt.value; 
+                var tq5 = txt_box_limitToFirst.value; 
+                var tq6 = txt_box_limitToLast.value; 
+                var ttt = '{"order_name": ' + '"' + t1 + '"' + ', "code": ' + '"' +t2  + '"' +', "note": ' + '"' + t3 + '"' + '}'; 
+
+                ws.send(JSON.stringify({action: 'put', 
+                    order_name: t1, 
+                    code: t2, 
+                    note: t3, 
+                    in: ttt, 
+                    orderBy: tq1, 
+                    equalTo: tq2, 
+                    startAt: tq3, 
+                    endAt: tq4, 
+                    limitToFirst: tq5, 
+                    limitToLast: tq6})); 
+            }
+
+            ws.onmessage = function (message) {
+                value.innerText = message.data;
+                //console.log(server_message); 
+            };
+
+        </script>
+    </body>
+</html>
