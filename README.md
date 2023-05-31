@@ -16,7 +16,7 @@ To install the above packages, use the following command: pip install -r require
 'requirements.txt' file has a list of all the necessary packages required to run this code. 
 
 ## Data Sources
-1. IOC World Bird List v13.1
+IOC World Bird List v13.1
 (URL: https://www.worldbirdnames.org/new/ioc-lists/master-list-2/)
 Explanation: world bird master list by IOC recording more than 11,000 bird species around the world. Here we used the XML file from the website.
 
