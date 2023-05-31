@@ -10,7 +10,7 @@ In this step, each node (Order) would be offered with a unique id (_id). In addi
 we provided each “order_name” a unique index to avoid duplication.
 
 Then a Flask-based RESTful server was developed to handle CRUD requests sent from curl commands and established communication between the server and MongoDB 
-database, command-line interactions and operations was enabled for data retrieval, updating, creation, and deletion.
+database, command-line interactions and operations were enabled for data retrieval, updating, creation, and deletion.
 
 ## Running the Code
 'main.py': it uses 'xml_to_json.py' and 'json_to_mongoDB.py', the output will be two JSON file and one will be used to upload into MongoDB. Our 'main.py' can be run by typing command python3 main.py [file name] in the path of the file. Run this first before running anything else! For example: 
